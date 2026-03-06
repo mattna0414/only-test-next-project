@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Button, Input, Modal } from '@gkssk/dstest'
 import TopTabs from './components/TopTabs'
 import SectionCard from './components/SectionCard'
 import './App.css'
@@ -44,6 +45,9 @@ const sections = [
 
 function App() {
   const [activeTab, setActiveTab] = useState(sections[0].id)
+  const [projectBrief, setProjectBrief] = useState('')
+  const [contactEmail, setContactEmail] = useState('')
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
 
   const tabs = useMemo(
     () => sections.map(({ id, label }) => ({ id, label })),
@@ -85,6 +89,7 @@ function App() {
 
   return (
     <div className="page-shell">
+      <div className="ds-utility-sentinel border-input bg-background" aria-hidden="true" />
       <div className="ambient-glow" aria-hidden="true" />
       <TopTabs tabs={tabs} activeTab={activeTab} onSelect={handleTabSelect} />
 
@@ -95,6 +100,32 @@ function App() {
           <p>
             상단 탭으로 구역 이동이 가능하고, 각 섹션은 개별 컴포넌트로 분리되어 유지보수하기 쉽습니다.
           </p>
+          <div className="hero-contact">
+            <label className="hero-contact-label" htmlFor="project-brief">
+              프로젝트 한 줄 설명
+            </label>
+            <Input
+              id="project-brief"
+              inputSize="lg"
+              value={projectBrief}
+              onChange={(event) => setProjectBrief(event.target.value)}
+              placeholder="예: 브랜드 런칭 페이지를 2주 안에 만들고 싶어요."
+              className="hero-contact-input"
+            />
+            <Button
+              type="button"
+              size="lg"
+              variant="secondary"
+              className="hero-contact-cta"
+              onClick={() => setIsContactModalOpen(true)}
+              disabled={!projectBrief.trim()}
+            >
+              팝업으로 내용 확인
+            </Button>
+            <p className="hero-contact-hint">
+              입력한 내용은 데모 팝업에서만 확인되고 저장되지 않습니다.
+            </p>
+          </div>
         </aside>
 
         <div className="sections-wrap">
@@ -103,6 +134,41 @@ function App() {
           ))}
         </div>
       </main>
+
+      <Modal
+        open={isContactModalOpen}
+        title="문의 내용 미리보기"
+        onClose={() => setIsContactModalOpen(false)}
+      >
+        <div className="contact-modal-content">
+          <p className="contact-modal-brief">
+            {projectBrief.trim() || '아직 입력된 내용이 없습니다.'}
+          </p>
+          <label className="contact-modal-label" htmlFor="contact-email">
+            답변 받을 이메일
+          </label>
+          <Input
+            id="contact-email"
+            type="email"
+            value={contactEmail}
+            onChange={(event) => setContactEmail(event.target.value)}
+            placeholder="you@company.com"
+            className="contact-modal-input"
+          />
+          <div className="contact-modal-actions">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setIsContactModalOpen(false)}
+            >
+              닫기
+            </Button>
+            <Button type="button" onClick={() => setIsContactModalOpen(false)}>
+              확인했어요
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }

@@ -6,6 +6,10 @@
   padding: 2rem 1.25rem 3.5rem;
 }
 
+.ds-utility-sentinel {
+  display: none;
+}
+
 .ambient-glow {
   pointer-events: none;
   position: fixed;
@@ -129,6 +133,80 @@
   color: rgba(255, 245, 235, 0.9);
 }
 
+.hero-contact {
+  margin-top: 1.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 224, 200, 0.32);
+  border-radius: 16px;
+  background: rgba(32, 17, 12, 0.24);
+  backdrop-filter: blur(6px);
+}
+
+.hero-contact-label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 244, 234, 0.94);
+}
+
+.hero-contact-input {
+  width: 100%;
+  color: #2f1f1a;
+  background: rgba(255, 249, 243, 0.98);
+  border-color: rgba(111, 70, 58, 0.28);
+}
+
+.hero-contact-input::placeholder {
+  color: rgba(98, 70, 61, 0.72);
+}
+
+.hero-contact-cta {
+  width: 100%;
+  margin-top: 0.6rem;
+}
+
+.hero-contact-hint {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(255, 235, 220, 0.86);
+}
+
+.contact-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.contact-modal-brief {
+  margin: 0;
+  padding: 0.7rem 0.8rem;
+  border-radius: 10px;
+  color: #4f372f;
+  border: 1px solid rgba(95, 64, 54, 0.2);
+  background: #fffaf5;
+}
+
+.contact-modal-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #5f3c31;
+}
+
+.contact-modal-input {
+  color: #2f1f1a;
+  background: #fffaf5;
+}
+
+.contact-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
 .sections-wrap {
   display: flex;
   flex-direction: column;
@@ -248,5 +326,13 @@
 
   .section-card {
     border-radius: 16px;
+  }
+
+  .contact-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .contact-modal-actions button {
+    width: 100%;
   }
 }
